@@ -9,6 +9,8 @@ imagePullPolicy: IfNotPresent
 service:
   enabled: true
   type: "ClusterIP"
+  externalTrafficPolicy: Local
+  # ClusterIP: None
 
 persistence:
   enabled: true
