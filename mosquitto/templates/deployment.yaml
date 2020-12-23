@@ -25,6 +25,7 @@ spec:
       - image: {{ .Values.image }}
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
         name: {{ template "fullname" . }}
+        command: ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
         ports:
         - containerPort: 1883
           name: "mqtt"
