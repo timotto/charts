@@ -45,6 +45,9 @@ spec:
           - name: mosquitto-data
             mountPath: /mosquitto/data
             subPath: mosquitto/data
+        {{- with .Values.extraMounts }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         {{- with .Values.deployment.probes }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -63,3 +66,6 @@ spec:
       {{- else }}
         emptyDir: {}
       {{- end -}}
+      {{- with .Values.extraVolumes }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
