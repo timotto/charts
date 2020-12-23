@@ -55,6 +55,7 @@ The following tables lists the configurable parameters of the mosquitto chart an
 | `persistence.size`         | Size of data volume                        | `2Gi`                                       |
 | `resources`                | CPU/Memory resource requests/limits        | Memory: `100Mi`, CPU: `50m`                |
 | `config`                   | Multi-line string for mosquitto.conf configuration | see below                                       |
+| `extraConfig`              | Additional configuration files             | `[]`        |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
@@ -79,6 +80,7 @@ $ helm install --name my-release -f values.yaml smizy/mosquitto
 The mosquitto image allows you to provide a custom `mosquitto.cnf` file for configuring mosquitto.
 This Chart uses the `config` value to mount a custom `mosquitto.cnf` using a [ConfigMap](http://kubernetes.io/docs/user-guide/configmap/).
 You can configure this by creating a YAML file that defines the `config` property as a multi-line string in the format of a `mosquitto.cnf` file.
+The Chart uses the `extraConfig` value to add arbitrary configuration files relative to `mosquitto.cnf`.
 For example:
 
 ```sh
@@ -88,6 +90,12 @@ config: |-
   listener 1883
   listener 9090
   protocol websockets
+  allow_anonymous false
+  password_file auth/passwordfile
+extraConfig:
+- filename: auth/passwordfile
+  content: |-
+    test:$6$RFU4TM5lSR6ZvjlM$sxK8rndx2tdgUJyeN1Wg/w20FATUA3gJr6yxvLzc6MbUO8/asfxYq02/PZFQKGheIK30bi/pmWDWaE+Gt+3IBw==
 EOF
 
 helm install --name my-release -f mosquitto-values.yaml smizy/mosquitto

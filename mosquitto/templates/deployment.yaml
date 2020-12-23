@@ -37,6 +37,12 @@ spec:
             mountPath: /mosquitto/config/mosquitto.conf
             subPath: mosquitto.conf
             readOnly: true
+        {{- range $index,$item := .Values.extraConfig }}
+          - name: mosquitto-conf
+            subPath: extra-config-{{ $index }}
+            readOnly: true
+            mountPath: /mosquitto/config/{{ $item.filename }}
+        {{- end }}
           - name: mosquitto-data
             mountPath: /mosquitto/data
             subPath: mosquitto/data

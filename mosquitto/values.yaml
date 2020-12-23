@@ -44,3 +44,11 @@ config: |-
   listener 1883
   listener 9090
   protocol websockets
+
+extraConfig: []
+# #  allow_anonymous false
+# #  password_file auth/passwordfile
+# - filename: auth/passwordfile
+#   content: |-
+#     user:$6$LpvFTnfXz1634JoO$oZjduJFV2wRfBL2Fn+Re5422DeL90dcx+M/jSHRfRvFVhUPwQxHmw64sD7aw+272JJSKbgiVjJXjRQ943ucb4g==
+#     test:$6$RFU4TM5lSR6ZvjlM$sxK8rndx2tdgUJyeN1Wg/w20FATUA3gJr6yxvLzc6MbUO8/asfxYq02/PZFQKGheIK30bi/pmWDWaE+Gt+3IBw==

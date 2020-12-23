@@ -10,3 +10,7 @@ metadata:
 data:
   mosquitto.conf: |-
     {{- .Values.config | nindent 4 }}
+  {{- range $index,$item := .Values.extraConfig }}
+  extra-config-{{ $index }}: |-
+    {{- $item.content | nindent 4 }}
+  {{- end }}
