@@ -29,6 +29,8 @@ spec:
         ports:
         - containerPort: 1883
           name: "mqtt"
+        - containerPort: 8883
+          name: "mqtts"
         - containerPort: 9090
           name: "websocket"
         volumeMounts:
